@@ -48,4 +48,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # npm token from GitHub Secrets
-        run: pnpm dlx semantic-release
+        run: pnpm semantic-release
