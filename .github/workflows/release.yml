@@ -6,7 +6,7 @@ on:
       - master
 
 permissions:
-  contents: read # for checkout
+  contents: read  # for checkout
 
 jobs:
   release:
@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
+      issues: write  # to be able to comment on released issues
+      pull-requests: write  # to be able to comment on released pull requests
+      id-token: write  # to enable use of OIDC for npm provenance
 
     steps:
       # 1. Checkout the repository
@@ -25,27 +25,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2. Set up Node.js environment
+      # 2. Install pnpm (needed to use pnpm in the following steps)
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # 3. Set up Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
 
-      # 3. Install pnpm (this step is important)
-      - name: Install pnpm
-        run: npm install -g pnpm
+      # 4. Install dependencies with pnpm
+      - name: Install dependencies
+        run: pnpm install
 
-      # 4. Install semantic-release and plugins temporarily with pnpx (without adding to package.json)
-      - name: Install semantic-release and plugins temporarily
-        run: |
-          pnpm add --global semantic-release @semantic-release/npm @semantic-release/github @semantic-release/git @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator --no-save
+      # 5. Build your packages (if necessary)
+      - name: Build packages
+        run: pnpm run build:packages
 
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: pnpm audit signatures
-
-      # 5. Run semantic-release
+      # 6. Run semantic-release with pnpx (no need for global or local installation)
       - name: Run semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token for authentication
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # npm token from GitHub Secrets
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # npm token from GitHub Secrets
         run: pnpx semantic-release
