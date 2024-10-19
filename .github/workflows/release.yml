@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18.x'  # Specify your Node.js version
+          node-version: '20.x'  # Specify your Node.js version
           registry-url: 'https://registry.npmjs.org'
 
       # 3. Install pnpm (this step is important)
