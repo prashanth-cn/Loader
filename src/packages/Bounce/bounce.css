@@ -29,13 +29,16 @@
   flex: 1;
 }
 
-.overlay {
+.container {
   position: absolute;
   inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000 !important;
+}
+
+.overlay {
   border: transparent solid;
   border-radius: 32px;
   overflow: hidden;

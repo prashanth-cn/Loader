@@ -9,8 +9,14 @@ const Loader = ({
   bounceElements?: number;
   withOverlay?: boolean;
 }) => {
+  
+  let containerClass = "container";
+  if (withOverlay) {
+    containerClass += " overlay";
+  }
+
   return (
-    <div className={withOverlay ? "overlay" : ""}>
+    <div className={containerClass}>
       <div className={"loader"}>
         {Array.from({ length: bounceElements }, (_, i) => (
           <div

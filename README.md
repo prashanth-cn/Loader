@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+# Loader Component Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, customizable loader component built with React. It allows you to specify the color, number of bouncing elements, and whether or not to show an overlay behind the loader.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install the library via npm (or pnpm, if you're using it):
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install @ui-libs/loader
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Or using pnpm:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```bash
+pnpm add @ui-libs/loader
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Usage
+
+Here’s how you can use the Loader component in your React project
+
+```jsx
+import React from 'react';
+import Loader from '@ui-libs/loader';
+
+const App = () => {
+  return (
+    <div>
+      <h1>Welcome to the Loader Demo</h1>
+      <Loader color="red" bounceElements={4} withOverlay={true} />
+    </div>
+  );
+};
+
+export default App;
+```
+
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| color | string | - | The color of the loader |
+| bounceElements | number | 3 | The number of bouncing elements (balls) in the loader animation. |
+| withOverlay | boolean | false | Determines whether an overlay appears behind the loader. |
+
+Example Usage
+
+Loader with 3 bouncing elements and an overlay:
+
+```jsx
+<Loader color="#00ff00" bounceElements={3} withOverlay={true} />
+```
+
+Loader with 5 bouncing elements and no overlay:
+
+```jsx
+<Loader color="#ff0000" bounceElements={5} withOverlay={false} />
 ```
