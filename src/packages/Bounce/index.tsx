@@ -9,7 +9,6 @@ const Loader = ({
   bounceElements?: number;
   withOverlay?: boolean;
 }) => {
-  
   let containerClass = "container";
   if (withOverlay) {
     containerClass += " overlay";

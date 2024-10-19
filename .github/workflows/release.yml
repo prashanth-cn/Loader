@@ -35,10 +35,10 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      # 4. Install dependencies with pnpm (including semantic-release and plugins)
-      - name: Install semantic-release and plugins with pnpm
+      # 4. Install semantic-release and plugins temporarily with pnpx (without adding to package.json)
+      - name: Install semantic-release and plugins temporarily
         run: |
-          pnpm install semantic-release @semantic-release/npm @semantic-release/github @semantic-release/git @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator
+          pnpm add --global semantic-release @semantic-release/npm @semantic-release/github @semantic-release/git @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator --no-save
 
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: pnpm audit signatures
