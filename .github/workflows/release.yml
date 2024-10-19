@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   release:
@@ -18,17 +18,21 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16.x'  # Specify your preferred Node.js version
+          node-version: '16.x'  # Specify your Node.js version
           registry-url: 'https://registry.npmjs.org'
 
-      # 3. Install only semantic-release and its plugins without modifying package.json
-      - name: Install semantic-release and plugins
+      # 3. Install pnpm (this step is important)
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # 4. Install dependencies with pnpm (including semantic-release and plugins)
+      - name: Install semantic-release and plugins with pnpm
         run: |
           pnpm install semantic-release @semantic-release/npm @semantic-release/github @semantic-release/git
 
-      # 4. Run the semantic-release command
+      # 5. Run semantic-release
       - name: Run semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub authentication
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}        # npm authentication
-        run: npx semantic-release
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}        # npm token from GitHub Secrets
+        run: pnpx semantic-release
