@@ -1,10 +1,16 @@
 {
-  "name": "loader",
+  "name": "@ui-libs/loader",
   "version": "1.0.0",
   "author": "Prashanth",
   "type": "module",
   "main": "./index.es.js",
   "types": "./types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "lint": "eslint .",
