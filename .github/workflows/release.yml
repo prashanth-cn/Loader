@@ -25,7 +25,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2. Install pnpm (needed to use pnpm in the following steps)
+      # 2. Install pnpm
       - name: Install pnpm
         run: npm install -g pnpm
 
@@ -35,17 +35,18 @@ jobs:
         with:
           node-version: "lts/*"
 
-      # 4. Install dependencies with pnpm
-      - name: Install dependencies
-        run: pnpm install
+      # 4. Install dependencies (including semantic-release plugins)
+      - name: Install semantic-release and plugins
+        run: |
+          pnpm install semantic-release @semantic-release/changelog @semantic-release/npm @semantic-release/github @semantic-release/git @semantic-release/commit-analyzer @semantic-release/release-notes-generator
 
       # 5. Build your packages (if necessary)
       - name: Build packages
         run: pnpm run build:packages
 
-      # 6. Run semantic-release with pnpx (no need for global or local installation)
+      # 6. Run semantic-release
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # npm token from GitHub Secrets
-        run: pnpx -p semantic-release -p @semantic-release/changelog -p @semantic-release/npm -p @semantic-release/github -p @semantic-release/git -p @semantic-release/commit-analyzer -p @semantic-release/release-notes-generator semantic-release
+        run: pnpx semantic-release
