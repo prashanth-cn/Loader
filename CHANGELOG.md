@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/prashanth-cn/Loader/compare/v1.1.0...v1.1.1) (2024-10-19)
+
+
+### Bug Fixes
+
+* **build:** lock file and other changes ([39532b1](https://github.com/prashanth-cn/Loader/commit/39532b11be6e9faa5cd801ddc1240c3c1e3707e4))
+* **build:** made minor changes ([6e4a018](https://github.com/prashanth-cn/Loader/commit/6e4a018d8c53b29affce2dca4fed351f04b93285))
+* **release:** with dlx ([ba23c17](https://github.com/prashanth-cn/Loader/commit/ba23c1762b3e62bcff063880a873fcaafaae9676))
+
 # [1.1.0](https://github.com/prashanth-cn/Loader/compare/v1.0.1...v1.1.0) (2024-10-19)
 
 
