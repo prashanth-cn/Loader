@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/prashanth-cn/Loader/compare/v1.0.0...v1.0.1) (2024-10-19)
+
+
+### Bug Fixes
+
+* **app:** background and layout changes ([327a0d9](https://github.com/prashanth-cn/Loader/commit/327a0d9e969d2884aec72c42d7e7aa7bf27da70c))
+
 # 1.0.0 (2024-10-19)
 
 
