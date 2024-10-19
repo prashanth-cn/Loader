@@ -5,8 +5,12 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read # for checkout
+
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -17,14 +21,15 @@ jobs:
     steps:
       # 1. Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       # 2. Set up Node.js environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '20.x'  # Specify your Node.js version
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "lts/*"
 
       # 3. Install pnpm (this step is important)
       - name: Install pnpm
@@ -35,9 +40,12 @@ jobs:
         run: |
           pnpm install semantic-release @semantic-release/npm @semantic-release/github @semantic-release/git @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator
 
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: pnpm audit signatures
+
       # 5. Run semantic-release
       - name: Run semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
-          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}        # npm token from GitHub Secrets
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token for authentication
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # npm token from GitHub Secrets
         run: pnpx semantic-release
