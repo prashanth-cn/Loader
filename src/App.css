@@ -40,3 +40,20 @@
 .read-the-docs {
   color: #888;
 }
+
+.app_container {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; */
+}
+.playgroundBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire screen without distortion */
+  z-index: -1; /* Ensures the image is behind any other content */
+}

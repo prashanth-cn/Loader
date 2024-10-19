@@ -1,0 +1,44 @@
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.ball {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.loader {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000 !important;
+  border: transparent solid;
+  border-radius: 32px;
+  overflow: hidden;
+  margin: 8px;
+  backdrop-filter: blur(5px);
+}

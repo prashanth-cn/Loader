@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.app.json", // Extends the app tsconfig
+  "compilerOptions": {
+    "noEmit": false, // Make sure files are emitted
+    "emitDeclarationOnly": true, // Only emit declaration files
+    "declaration": true, // Enable declaration generation
+    "declarationDir": "./dist/types", // Where to store .d.ts files
+    "outDir": "./dist" // General output folder
+  },
+  "include": ["src/packages"], // Include your source files
+  "exclude": ["dist", "node_modules"] // Exclude build artifacts
+}
