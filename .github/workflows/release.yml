@@ -35,18 +35,17 @@ jobs:
         with:
           node-version: "lts/*"
 
-      # 4. Install dependencies (including semantic-release plugins)
-      - name: Install semantic-release and plugins
-        run: |
-          pnpm install semantic-release @semantic-release/changelog @semantic-release/npm @semantic-release/github @semantic-release/git @semantic-release/commit-analyzer @semantic-release/release-notes-generator
+      # 4. Install dependencies
+      - name: Install dependencies with pnpm
+        run: pnpm install
 
       # 5. Build your packages (if necessary)
       - name: Build packages
         run: pnpm run build:packages
 
-      # 6. Run semantic-release
+      # 6. Run semantic-release using pnpm dlx (no saving of dependencies)
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # npm token from GitHub Secrets
-        run: pnpx semantic-release
+        run: pnpm dlx semantic-release
