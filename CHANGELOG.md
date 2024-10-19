@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/prashanth-cn/Loader/compare/v1.0.1...v1.1.0) (2024-10-19)
+
+
+### Bug Fixes
+
+* **build:** build issues ([9893225](https://github.com/prashanth-cn/Loader/commit/989322556e74e97b0585451d120248add71d8f74))
+* **release:** pnpm install ([12a95b1](https://github.com/prashanth-cn/Loader/commit/12a95b1bcf26fed2f3f1fe935f305c286e593af1))
+* **release:** release ([a584bd7](https://github.com/prashanth-cn/Loader/commit/a584bd722e47bc49b367773941975e0b3c832ff1))
+
+
+### Features
+
+* **vercel:** added vercel and opther minor changes ([32253e4](https://github.com/prashanth-cn/Loader/commit/32253e45ef8ea4ace55a0957eeda68839c235c56))
+
 ## [1.0.1](https://github.com/prashanth-cn/Loader/compare/v1.0.0...v1.0.1) (2024-10-19)
 
 
